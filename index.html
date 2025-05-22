@@ -1,394 +1,404 @@
-import React, { useState, useEffect, useMemo } from 'react';
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avio's Mix Content - Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for better visual consistency if needed, though Tailwind covers most */
+        .config-button {
+            transition: all 0.3s ease;
+        }
+        .browser-tile {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .browser-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900">
 
-// BrowserScoresPage Component (sloučeno do App.js)
-const BrowserScoresPage = ({ onBackClick = () => console.error('onBackClick prop was not provided or is not a function!') }) => {
-  // Simulovaná data skóre prohlížečů pro různé konfigurace
-  const browserScores = {
-    "i7 13980HX RTX 4090 laptop 32GB RAM DDR5 4800MHz": {
-      "Google Chrome": { score: 35.1, description: "Optimalizováno pro extrémní výkon na špičkových herních notebocích." },
-      "Microsoft Edge": { score: 35.5, description: "Velmi rychlý a efektivní, ideální pro moderní notebooky." },
-      "Mozilla Firefox": { score: 29.5, description: "Výkonný a zaměřený na soukromí, s aktivní komunitou." },
-      "Opera Browser": { score: 32.8, description: "Inovativní funkce a vestavěná VPN, skvělé na výkonných strojích." },
-      "Brave Browser": { score: 33.3, description: "Rychlý a bezpečný, blokuje reklamy a trackery, maximální výkon." },
-      "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
-    },
-    "7800X3D RTX 4080 Super 32GB RAM DDR6 6000MHz CL28": {
-      "Google Chrome": { score: 34.5, description: "Špičkový výkon pro desktopové herní sestavy s RAM s nízkou latencí." },
-      "Microsoft Edge": { score: 34.9, description: "Extrémně rychlý, plně využívá moderní hardware." },
-      "Mozilla Firefox": { score: 28.2, description: "Vynikající výkon a stabilita na systémech s vysokou frekvencí." },
-      "Opera Browser": { score: 31.8, description: "Velmi rychlý s pokročilými funkcemi, ideální pro náročné uživatele." },
-      "Brave Browser": { score: 33.7, description: "Nejrychlejší načítání a prohlížení díky optimalizaci a blokování." },
-      "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
-    },
-    "i5 10400 16GB RAM DDR5 2666MHz": {
-      "Google Chrome": { score: 17.3, description: "Spolehlivý výkon pro každodenní použití na standardních sestavách." },
-      "Microsoft Edge": { score: 18.3, description: "Dobrá rovnováha mezi rychlostí a spotřebou zdrojů." },
-      "Mozilla Firefox": { score: 14.9, description: "Stabilní výkon, vhodné pro běžné úkoly." },
-      "Opera Browser": { score: 16.2, description: "Plynulý provoz s užitečnými doplňky." },
-      "Brave Browser": { score: 17.1, description: "Rychlé načítání stránek díky blokování reklam." },
-      "Apple Safari": { score: 0.0, description: "Efektivní prohlížeč s dobrým řízením spotřeby energie." }
-    },
-    "i7 10750H RTX 2070 Super laptop 16GB RAM DDR5 2666MHz": {
-      "Google Chrome": { score: 18.5, description: "Dobrý výkon pro středně výkonné herní notebooky." },
-      "Microsoft Edge": { score: 19.0, description: "Efektivní a rychlý, vhodné pro multitasking." },
-      "Mozilla Firefox": { score: 16.5, description: "Spolehlivý a bezpečný na mobilních platformách." },
-      "Opera Browser": { score: 17.8, description: "Plynulý zážitek s vestavěnými funkcemi." },
-      "Brave Browser": { score: 18.7, description: "Rychlé načítání a ochrana soukromí na cestách." },
-      "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
-    }
-  };
-
-  // Skutečná loga prohlížečů
-  const browserLogos = {
-    "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
-    "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
-    "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
-    "Opera Browser": "https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg",
-    "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
-    "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
-  };
-
-  // Aktualizované barvy prohlížečů
-  const browserColors = {
-    "Google Chrome": "bg-yellow-500",
-    "Microsoft Edge": "bg-blue-500",
-    "Mozilla Firefox": "bg-orange-500",
-    "Opera Browser": "bg-red-600",
-    "Brave Browser": "#d93c18", // Konkrétní hex kód pro Brave
-    "Apple Safari": "bg-gray-600"
-  };
-
-  const [currentConfig, setCurrentConfig] = useState(Object.keys(browserScores)[0]);
-
-  // Derive sorted browsers based on currentConfig
-  const sortedBrowsers = useMemo(() => {
-    const scores = browserScores[currentConfig];
-    if (!scores) return [];
-
-    const browsersArray = Object.keys(scores).map(browserName => ({
-      name: browserName,
-      score: scores[browserName].score,
-      description: scores[browserName].description
-    }));
-
-    return browsersArray.sort((a, b) => b.score - a.score);
-  }, [currentConfig, browserScores]);
-
-  return (
-    <div className="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
-      <div className="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8">
-        <button
-          onClick={onBackClick} // Voláme prop přímo
-          className="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300"
-        >
-          &larr; Zpět na blog
-        </button>
-        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Web Browser Scores Speedometer 3.1</h1>
-
-        <div className="flex justify-center gap-4 mb-10 overflow-x-auto pb-4">
-          {Object.keys(browserScores).map(configName => (
-            <button
-              key={configName}
-              className={`
-                config-button bg-gray-200 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
-                w-[220px] h-[60px] flex items-center justify-center text-center whitespace-normal leading-tight flex-shrink-0 text-sm px-4 py-2
-                ${currentConfig === configName ? 'bg-blue-500 text-white shadow-lg' : ''}
-              `}
-              onClick={() => setCurrentConfig(configName)}
-            >
-              {configName}
-            </button>
-          ))}
+    <div id="app-root">
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sortedBrowsers.map(browserData => (
-            <div
-              key={browserData.name}
-              className={`
-                browser-tile text-white p-4 rounded-xl shadow-lg flex flex-col items-center text-center
-                ${browserData.name === "Brave Browser" ? '' : browserColors[browserData.name]}
-              `}
-              style={browserData.name === "Brave Browser" ? { backgroundColor: browserColors[browserData.name] } : {}}
-            >
-              <div className="w-[72px] h-[72px] rounded-full bg-white flex items-center justify-center mb-3 border-[3px] border-white overflow-hidden">
-                <img
-                  src={browserLogos[browserData.name]}
-                  alt={`${browserData.name} logo`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/72x72/ffffff/000000?text=Logo'; }}
-                />
-              </div>
-              <h2 className="text-lg font-bold mb-2">{browserData.name}</h2>
-              <p className="text-4xl font-extrabold mb-3">{browserData.score}</p>
-              <p className="text-sm">{browserData.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+    <script>
+        // Data pro blogové příspěvky
+        const blogPostsData = [
+            {
+                id: 1,
+                title: 'Optimalizace prohlížečů: Tipy pro rychlejší a bezpečnější surfování',
+                excerpt: 'Zjistěte, jak nastavit svůj webový prohlížeč pro maximální výkon a ochranu soukromí. Od doplňků po pokročilá nastavení.',
+                teaserLogos: ["Google Chrome", "Microsoft Edge", "Mozilla Firefox", "Brave Browser", "Apple Safari"],
+                category: 'Technologie',
+                date: '2025-05-22',
+                page: 'browser-scores'
+            },
+            {
+                id: 2,
+                title: 'NHL Teams Logo Tierlist: Která loga jsou nejlepší a proč?',
+                excerpt: 'Ponořte se do světa hokejových log! Analyzujeme design a historii nejlepších i nejhorších log týmů NHL.',
+                nhlTeaserLogos: [
+                    "Anaheim Ducks", "Arizona Coyotes", "Boston Bruins", "Buffalo Sabres", "Calgary Flames",
+                    "Carolina Hurricanes", "Chicago Blackhawks", "Colorado Avalanche", "Columbus Blue Jackets",
+                    "Dallas Stars", "Detroit Red Wings", "Edmonton Oilers", "Florida Panthers", "Los Angeles Kings",
+                    "Minnesota Wild", "Montreal Canadiens", "Nashville Predators", "New Jersey Devils",
+                    "New York Islanders", "New York Rangers", "Ottawa Senators", "Philadelphia Flyers",
+                    "Pittsburgh Penguins", "San Jose Sharks", "Seattle Kraken", "St. Louis Blues",
+                    "Tampa Bay Lightning", "Toronto Maple Leafs", "Vancouver Canucks", "Vegas Golden Knights",
+                    "Washington Capitals", "Winnipeg Jets"
+                ],
+                category: 'Sport',
+                date: '2025-05-20'
+            },
+            {
+                id: 3,
+                title: 'Mobilní revoluce: Co očekávat od smartphonů v roce 2025',
+                excerpt: 'Inovace v mobilních telefonech, které ovlivní náš každodenní život. Od skládacích displejů po vylepšené AI funkce.',
+                image: 'https://placehold.co/600x400/FFFFFF/000000?text=Mobily',
+                category: 'Technologie',
+                date: '2025-05-18'
+            },
+            {
+                id: 4,
+                title: 'Chytré televize: Jak vybrat tu pravou pro váš obývací pokoj a streamování',
+                excerpt: 'Průvodce světem moderních televizorů. Funkce, které byste měli znát, a tipy pro nejlepší zážitek ze sledování seriálů a filmů.',
+                image: 'https://placehold.co/600x400/FFD700/000000?text=Televize',
+                category: 'Technologie',
+                date: '2025-05-15'
+            },
+            {
+                id: 5,
+                title: 'Fitness trendy 2025: Cvičení, které vás dostane do formy',
+                excerpt: 'Nejnovější přístupy k tréninku a výživě. Jak efektivně cvičit a dosáhnout svých fitness cílů s minimem úsilí.',
+                image: 'https://placehold.co/600x400/000000/FFFFFF?text=Fitness',
+                category: 'Sport',
+                date: '2025-05-12'
+            },
+            {
+                id: 6,
+                title: 'Seriálový maraton: Nejlepší novinky a tipy, co sledovat tento měsíc',
+                excerpt: 'Přehled nejžhavějších seriálových novinek a doporučení, které vás pohltí. Od dramat po komedie – každý si najde to své.',
+                image: 'https://placehold.co/600x400/FFFFFF/FFD700?text=Seriály',
+                category: 'Zábava',
+                date: '2025-05-10'
+            },
+        ];
 
-      <footer className="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
-        <p>Updated on May 22, 2025. Latest browser versions used as of the update date.</p>
-      </footer>
-    </div>
-  );
-};
+        // Skutečná loga prohlížečů pro použití v teaseru
+        const browserLogosTeaser = {
+            "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
+            "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
+            "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
+            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
+            "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
+        };
 
-// Hlavní komponenta aplikace
-function App() {
-  // Nastavíme výchozí stránku na 'home', aby se zobrazil hlavní feed blogu
-  const [currentPage, setCurrentPage] = useState('home');
+        // Nový objekt pro loga NHL týmů v teaseru (používáme zástupné obrázky s barvami)
+        const nhlTeamLogosTeaser = {
+            "Anaheim Ducks": "https://placehold.co/48x48/F47A38/000000?text=ANA", // Oranžová/Černá
+            "Arizona Coyotes": "https://placehold.co/48x48/8C2633/FFFFFF?text=ARI", // Kaštanová/Bílá
+            "Boston Bruins": "https://placehold.co/48x48/FFB81C/000000?text=BOS", // Zlatá/Černá
+            "Buffalo Sabres": "https://placehold.co/48x48/002654/FFB81C?text=BUF", // Modrá/Zlatá
+            "Calgary Flames": "https://placehold.co/48x48/C8102E/FFB81C?text=CGY", // Červená/Zlatá
+            "Carolina Hurricanes": "https://placehold.co/48x48/CC0000/FFFFFF?text=CAR", // Červená/Bílá
+            "Chicago Blackhawks": "https://placehold.co/48x48/E3263A/000000?text=CHI", // Červená/Černá
+            "Colorado Avalanche": "https://placehold.co/48x48/236192/B22234?text=COL", // Modrá/Vínová
+            "Columbus Blue Jackets": "https://placehold.co/48x48/002654/C8102E?text=CBJ", // Modrá/Červená
+            "Dallas Stars": "https://placehold.co/48x48/006341/000000?text=DAL", // Zelená/Černá
+            "Detroit Red Wings": "https://placehold.co/48x48/CE1126/FFFFFF?text=DET", // Červená/Bílá
+            "Edmonton Oilers": "https://placehold.co/48x48/041E42/FF4C00?text=EDM", // Modrá/Oranžová
+            "Florida Panthers": "https://placehold.co/48x48/041E42/C8102E?text=FLA", // Modrá/Červená
+            "Los Angeles Kings": "https://placehold.co/48x48/111111/A2AAAD?text=LAK", // Černá/Šedá
+            "Minnesota Wild": "https://placehold.co/48x48/154734/A6192E?text=MIN", // Zelená/Vínová
+            "Montreal Canadiens": "https://placehold.co/48x48/AA192E/001E62?text=MTL", // Červená/Modrá
+            "Nashville Predators": "https://placehold.co/48x48/FFB81C/041E42?text=NSH", // Zlatá/Modrá
+            "New Jersey Devils": "https://placehold.co/48x48/C8102E/000000?text=NJD", // Červená/Černá
+            "New York Islanders": "https://placehold.co/48x48/00529B/FFC72C?text=NYI", // Modrá/Zlatá
+            "New York Rangers": "https://placehold.co/48x48/0038A8/C8102E?text=NYR", // Modrá/Červená
+            "Ottawa Senators": "https://placehold.co/48x48/C8102E/000000?text=OTT", // Červená/Černá
+            "Philadelphia Flyers": "https://placehold.co/48x48/F74902/000000?text=PHI", // Oranžová/Černá
+            "Pittsburgh Penguins": "https://placehold.co/48x48/000000/FFB81C?text=PIT", // Černá/Zlatá
+            "San Jose Sharks": "https://placehold.co/48x48/006D75/000000?text=SJS", // Tyrkysová/Černá
+            "Seattle Kraken": "https://placehold.co/48x48/001628/68A2B9?text=SEA", // Modrá/Šedá
+            "St. Louis Blues": "https://placehold.co/48x48/002654/FFD700?text=STL", // Modrá/Zlatá
+            "Tampa Bay Lightning": "https://placehold.co/48x48/002654/FFFFFF?text=TBL", // Modrá/Bílá
+            "Toronto Maple Leafs": "https://placehold.co/48x48/00205B/FFFFFF?text=TOR", // Modrá/Bílá
+            "Vancouver Canucks": "https://placehold.co/48x48/00205B/041C2C?text=VAN", // Modrá/Zelená
+            "Vegas Golden Knights": "https://placehold.co/48x48/B4975A/000000?text=VGK", // Zlatá/Černá
+            "Washington Capitals": "https://placehold.co/48x48/C8102E/041E42?text=WSH", // Červená/Modrá
+            "Winnipeg Jets": "https://placehold.co/48x48/041E42/A2AAAD?text=WPG"  // Modrá/Šedá
+        };
 
-  // Skutečná loga prohlížečů pro použití v teaseru
-  const browserLogosTeaser = {
-    "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
-    "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
-    "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
-    "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
-    "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
-  };
+        // Data pro BrowserScoresPage
+        const browserScoresData = {
+            "i7 13980HX RTX 4090 laptop 32GB RAM DDR5 4800MHz": {
+                "Google Chrome": { score: 35.1, description: "Optimalizováno pro extrémní výkon na špičkových herních notebocích." },
+                "Microsoft Edge": { score: 35.5, description: "Velmi rychlý a efektivní, ideální pro moderní notebooky." },
+                "Mozilla Firefox": { score: 29.5, description: "Výkonný a zaměřený na soukromí, s aktivní komunitou." },
+                "Opera Browser": { score: 32.8, description: "Inovativní funkce a vestavěná VPN, skvělé na výkonných strojích." },
+                "Brave Browser": { score: 33.3, description: "Rychlý a bezpečný, blokuje reklamy a trackery, maximální výkon." },
+                "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
+            },
+            "7800X3D RTX 4080 Super 32GB RAM DDR6 6000MHz CL28": {
+                "Google Chrome": { score: 34.5, description: "Špičkový výkon pro desktopové herní sestavy s RAM s nízkou latencí." },
+                "Microsoft Edge": { score: 34.9, description: "Extrémně rychlý, plně využívá moderní hardware." },
+                "Mozilla Firefox": { score: 28.2, description: "Vynikající výkon a stabilita na systémech s vysokou frekvencí." },
+                "Opera Browser": { score: 31.8, description: "Velmi rychlý s pokročilými funkcemi, ideální pro náročné uživatele." },
+                "Brave Browser": { score: 33.7, description: "Nejrychlejší načítání a prohlížení díky optimalizaci a blokování." },
+                "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
+            },
+            "i5 10400 16GB RAM DDR5 2666MHz": {
+                "Google Chrome": { score: 17.3, description: "Spolehlivý výkon pro každodenní použití na standardních sestavách." },
+                "Microsoft Edge": { score: 18.3, description: "Dobrá rovnováha mezi rychlostí a spotřebou zdrojů." },
+                "Mozilla Firefox": { score: 14.9, description: "Stabilní výkon, vhodné pro běžné úkoly." },
+                "Opera Browser": { score: 16.2, description: "Plynulý provoz s užitečnými doplňky." },
+                "Brave Browser": { score: 17.1, description: "Rychlé načítání stránek díky blokování reklam." },
+                "Apple Safari": { score: 0.0, description: "Efektivní prohlížeč s dobrým řízením spotřeby energie." }
+            },
+            "i7 10750H RTX 2070 Super laptop 16GB RAM DDR5 2666MHz": {
+                "Google Chrome": { score: 18.5, description: "Dobrý výkon pro středně výkonné herní notebooky." },
+                "Microsoft Edge": { score: 19.0, description: "Efektivní a rychlý, vhodné pro multitasking." },
+                "Mozilla Firefox": { score: 16.5, description: "Spolehlivý a bezpečný na mobilních platformách." },
+                "Opera Browser": { score: 17.8, description: "Plynulý zážitek s vestavěnými funkcemi." },
+                "Brave Browser": { score: 18.7, description: "Rychlé načítání a ochrana soukromí na cestách." },
+                "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
+            }
+        };
 
-  // Nový objekt pro loga NHL týmů v teaseru (používáme skutečné URL adresy)
-  const nhlTeamLogosTeaser = {
-    "Anaheim Ducks": "https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Anaheim_Ducks.svg/800px-Anaheim_Ducks.svg.png",
-    "Arizona Coyotes": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Arizona_Coyotes_logo_%282021%29.svg/800px-Arizona_Coyotes_logo_%282021%29.png",
-    "Boston Bruins": "https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Boston_Bruins_logo.svg/800px-Boston_Bruins_logo.svg.png",
-    "Buffalo Sabres": "https://upload.wikimedia.org/wikipedia/en/thumb/8/82/Buffalo_Sabres_logo.svg/800px-Buffalo_Sabres_logo.svg.png",
-    "Calgary Flames": "https://upload.wikimedia.org/wikipedia/en/thumb/6/60/Calgary_Flames_logo.svg/800px-Calgary_Flames_logo.svg.png",
-    "Carolina Hurricanes": "https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Carolina_Hurricanes_logo.svg/800px-Carolina_Hurricanes_logo.svg.png",
-    "Chicago Blackhawks": "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Chicago_Blackhawks_logo.svg/800px-Chicago_Blackhawks_logo.svg.png",
-    "Colorado Avalanche": "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Colorado_Avalanche_logo.svg/800px-Colorado_Avalanche_logo.svg.png",
-    "Columbus Blue Jackets": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Columbus_Blue_Jackets_logo.svg/800px-Columbus_Blue_Jackets_logo.svg.png",
-    "Dallas Stars": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Dallas_Stars_logo.svg/800px-Dallas_Stars_logo.svg.png",
-    "Detroit Red Wings": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Detroit_Red_Wings_logo.svg/800px-Detroit_Red_Wings_logo.svg.png",
-    "Edmonton Oilers": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/Edmonton_Oilers_logo.svg/800px-Edmonton_Oilers_logo.svg.png",
-    "Florida Panthers": "https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Florida_Panthers_logo.svg/800px-Florida_Panthers_logo.svg.png",
-    "Los Angeles Kings": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Los_Angeles_Kings_logo.svg/800px-Los_Angeles_Kings_logo.svg.png",
-    "Minnesota Wild": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Minnesota_Wild_logo.svg/800px-Minnesota_Wild_logo.svg.png",
-    "Montreal Canadiens": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Montreal_Canadiens.svg/800px-Montreal_Canadiens.svg.png",
-    "Nashville Predators": "https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Nashville_Predators_logo.svg/800px-Nashville_Predators_logo.svg.png",
-    "New Jersey Devils": "https://upload.wikimedia.org/wikipedia/en/thumb/9/97/New_Jersey_Devils_logo.svg/800px-New_Jersey_Devils_logo.svg.png",
-    "New York Islanders": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/New_York_Islanders_logo.svg/800px-New_York_Islanders_logo.svg.png",
-    "New York Rangers": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/New_York_Rangers_logo.svg/800px-New_York_Rangers_logo.svg.png",
-    "Ottawa Senators": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Ottawa_Senators_logo.svg/800px-Ottawa_Senators_logo.svg.png",
-    "Philadelphia Flyers": "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/Philadelphia_Flyers_logo.svg/800px-Philadelphia_Flyers_logo.svg.png",
-    "Pittsburgh Penguins": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c2/Pittsburgh_Penguins_logo.svg/800px-Pittsburgh_Penguins_logo.svg.png",
-    "San Jose Sharks": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/San_Jose_Sharks_logo.svg/800px-San_Jose_Sharks_logo.svg.png",
-    "Seattle Kraken": "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Seattle_Kraken_logo.svg/800px-Seattle_Kraken_logo.svg.png",
-    "St. Louis Blues": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e3/St._Louis_Blues_logo.svg/800px-St._Louis_Blues_logo.svg.png",
-    "Tampa Bay Lightning": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2f/Tampa_Bay_Lightning_logo.svg/800px-Tampa_Bay_Lightning_logo.svg.png",
-    "Toronto Maple Leafs": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Toronto_Maple_Leafs_logo.svg/800px-Toronto_Maple_Leafs_logo.svg.png",
-    "Vancouver Canucks": "https://upload.wikimedia.org/wikipedia/en/thumb/4/46/Vancouver_Canucks_logo.svg/800px-Vancouver_Canucks_logo.svg.png",
-    "Vegas Golden Knights": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ac/Vegas_Golden_Knights_logo.svg/800px-Vegas_Golden_Knights_logo.svg.png",
-    "Washington Capitals": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Washington_Capitals_logo.svg/800px-Washington_Capitals_logo.svg.png",
-    "Winnipeg Jets": "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Winnipeg_Jets_logo.svg/800px-Winnipeg_Jets_logo.svg.png"
-  };
+        const browserLogosFull = {
+            "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
+            "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
+            "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
+            "Opera Browser": "https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg",
+            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
+            "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
+        };
 
-  // Ukázková data pro blogové příspěvky
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'Optimalizace prohlížečů: Tipy pro rychlejší a bezpečnější surfování',
-      excerpt: 'Zjistěte, jak nastavit svůj webový prohlížeč pro maximální výkon a ochranu soukromí. Od doplňků po pokročilá nastavení.',
-      // Místo jednoho obrázku nyní pole s názvy prohlížečů pro teaser
-      teaserLogos: ["Google Chrome", "Microsoft Edge", "Mozilla Firefox", "Brave Browser", "Apple Safari"],
-      category: 'Technologie',
-      date: '2025-05-22',
-      page: 'browser-scores' // Identifikátor pro novou stránku
-    },
-    {
-      id: 2,
-      title: 'NHL Teams Logo Tierlist: Která loga jsou nejlepší a proč?', // Změněný název
-      excerpt: 'Ponořte se do světa hokejových log! Analyzujeme design a historii nejlepších i nejhorších log týmů NHL.', // Změněný popis
-      nhlTeaserLogos: Object.keys(nhlTeamLogosTeaser), // Použijeme všechny klíče z objektu log NHL týmů
-      category: 'Sport',
-      date: '2025-05-20'
-    },
-    {
-      id: 3,
-      title: 'Mobilní revoluce: Co očekávat od smartphonů v roce 2025',
-      excerpt: 'Inovace v mobilních telefonech, které ovlivní náš každodenní život. Od skládacích displejů po vylepšené AI funkce.',
-      image: 'https://placehold.co/600x400/FFFFFF/000000?text=Mobily',
-      category: 'Technologie',
-      date: '2025-05-18'
-    },
-    {
-      id: 4,
-      title: 'Chytré televize: Jak vybrat tu pravou pro váš obývací pokoj a streamování',
-      excerpt: 'Průvodce světem moderních televizorů. Funkce, které byste měli znát, a tipy pro nejlepší zážitek ze sledování seriálů a filmů.',
-      image: 'https://placehold.co/600x400/FFD700/000000?text=Televize',
-      category: 'Technologie',
-      date: '2025-05-15'
-    },
-    {
-      id: 5,
-      title: 'Fitness trendy 2025: Cvičení, které vás dostane do formy',
-      excerpt: 'Nejnovější přístupy k tréninku a výživě. Jak efektivně cvičit a dosáhnout svých fitness cílů s minimem úsilí.',
-      image: 'https://placehold.co/600x400/000000/FFFFFF?text=Fitness',
-      category: 'Sport',
-      date: '2025-05-12'
-    },
-    {
-      id: 6,
-      title: 'Seriálový maraton: Nejlepší novinky a tipy, co sledovat tento měsíc',
-      excerpt: 'Přehled nejžhavějších seriálových novinek a doporučení, které vás pohltí. Od dramat po komedie – každý si najde to své.',
-      image: 'https://placehold.co/600x400/FFFFFF/FFD700?text=Seriály',
-      category: 'Zábava',
-      date: '2025-05-10'
-    },
-  ];
+        const browserColorsFull = {
+            "Google Chrome": "bg-yellow-500",
+            "Microsoft Edge": "bg-blue-500",
+            "Mozilla Firefox": "bg-orange-500",
+            "Opera Browser": "bg-red-600",
+            "Brave Browser": "#d93c18",
+            "Apple Safari": "bg-gray-600"
+        };
 
-  // Funkce pro zpracování navigace mezi stránkami
-  const handleNavigate = (pageName) => {
-    console.log('handleNavigate called with:', pageName); // Log pro ladění
-    setCurrentPage(pageName);
-  };
+        let currentPage = 'home'; // Globální proměnná pro sledování aktuální stránky
 
-  return (
-    <div className="min-h-screen bg-white text-gray-900 font-inter">
-      {/* Záhlaví */}
-      <header className="bg-black text-white py-6 shadow-lg rounded-b-xl">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-4xl font-extrabold text-yellow-400">
-            <a href="#" className="hover:text-yellow-300 transition-colors duration-300" onClick={() => handleNavigate('home')}>
-              Avio's Mix Content
-            </a>
-          </h1>
-          <nav>
-            <ul className="flex space-x-6">
-              <li>
-                <a href="#" className="text-lg hover:text-yellow-400 transition-colors duration-300" onClick={() => handleNavigate('home')}>
-                  Domů
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-lg hover:text-yellow-400 transition-colors duration-300">
-                  Technologie
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-lg hover:text-yellow-400 transition-colors duration-300">
-                  Sport
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-lg hover:text-yellow-400 transition-colors duration-300">
-                  Zábava
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+        // Funkce pro vykreslení stránky s výsledky prohlížečů
+        function renderBrowserScoresPage() {
+            const appRoot = document.getElementById('app-root');
+            let currentConfig = Object.keys(browserScoresData)[0]; // Výchozí konfigurace
 
-      {/* Podmíněné vykreslování na základě stavu currentPage */}
-      {currentPage === 'home' && (
-        <main className="container mx-auto px-4 py-12">
-          <h2 className="text-5xl font-bold text-center mb-12 text-black">
-            Nejnovější zprávy a inspirace
-          </h2>
+            const sortedBrowsers = (config) => {
+                const scores = browserScoresData[config];
+                if (!scores) return [];
+                const browsersArray = Object.keys(scores).map(browserName => ({
+                    name: browserName,
+                    score: scores[browserName].score,
+                    description: scores[browserName].description
+                }));
+                return browsersArray.sort((a, b) => b.score - a.score);
+            };
 
-          <div className="flex flex-col items-center space-y-8">
-            {blogPosts.map((post) => (
-              <div
-                key={post.id}
-                className="w-full max-w-4xl bg-gray-50 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-200"
-              >
-                {/* Dominantní obrázek nebo teaser s logy */}
-                <div className="w-full h-60 overflow-hidden flex items-center justify-center bg-yellow-400">
-                  {post.teaserLogos ? (
-                    <div className="flex flex-wrap justify-center items-center gap-2 p-4">
-                      {post.teaserLogos.map((logoName, index) => (
-                        <img
-                          key={index}
-                          src={browserLogosTeaser[logoName]}
-                          alt={`${logoName} logo`}
-                          className="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = `https://placehold.co/48x48/CCCCCC/000000?text=Logo`;
-                          }}
-                          crossOrigin="anonymous" // Přidáno pro řešení CORS
-                        />
-                      ))}
+            const generateBrowserTiles = (config) => {
+                return sortedBrowsers(config).map(browserData => `
+                    <div class="browser-tile text-white p-4 rounded-xl shadow-lg flex flex-col items-center text-center
+                        ${browserData.name === "Brave Browser" ? '' : browserColorsFull[browserData.name]}"
+                        style="${browserData.name === "Brave Browser" ? `background-color: ${browserColorsFull[browserData.name]};` : ''}"
+                    >
+                        <div class="w-[72px] h-[72px] rounded-full bg-white flex items-center justify-center mb-3 border-[3px] border-white overflow-hidden">
+                            <img src="${browserLogosFull[browserData.name]}" alt="${browserData.name} logo" class="w-full h-full object-cover"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/72x72/ffffff/000000?text=Logo';" crossorigin="anonymous">
+                        </div>
+                        <h2 class="text-lg font-bold mb-2">${browserData.name}</h2>
+                        <p class="text-4xl font-extrabold mb-3">${browserData.score}</p>
+                        <p class="text-sm">${browserData.description}</p>
                     </div>
-                  ) : post.nhlTeaserLogos ? (
-                    <div className="flex flex-wrap justify-center items-center gap-2 p-4">
-                      {post.nhlTeaserLogos.map((logoName, index) => (
-                        <img
-                          key={index}
-                          src={nhlTeamLogosTeaser[logoName]}
-                          alt={`${logoName} logo`}
-                          className="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = `https://placehold.co/48x48/CCCCCC/000000?text=Logo`;
-                          }}
-                          crossOrigin="anonymous" // Přidáno pro řešení CORS
-                        />
-                      ))}
+                `).join('');
+            };
+
+            // Vykreslení stránky
+            appRoot.innerHTML = `
+                <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8">
+                        <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                            &larr; Zpět na blog
+                        </button>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Web Browser Scores Speedometer 3.1</h1>
+
+                        <div class="flex justify-center gap-4 mb-10 overflow-x-auto pb-4">
+                            ${Object.keys(browserScoresData).map(configName => `
+                                <button
+                                    class="config-button bg-gray-200 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+                                    w-[220px] h-[60px] flex items-center justify-center text-center whitespace-normal leading-tight flex-shrink-0 text-sm px-4 py-2
+                                    ${currentConfig === configName ? 'bg-blue-500 text-white shadow-lg' : ''}"
+                                    onclick="updateBrowserConfig('${configName}')"
+                                >
+                                    ${configName}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <div id="browser-tiles-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${generateBrowserTiles(currentConfig)}
+                        </div>
                     </div>
-                  ) : (
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = `https://placehold.co/600x400/CCCCCC/000000?text=Obrázek+není+dostupný`;
-                      }}
-                      crossOrigin="anonymous" // Přidáno pro řešení CORS
-                    />
-                  )}
+
+                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
+                        <p>Updated on May 22, 2025. Latest browser versions used as of the update date.</p>
+                    </footer>
                 </div>
+            `;
 
-                <div className="p-6">
-                  <div className="flex justify-between items-center text-sm text-gray-500 mb-3">
-                    <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full font-semibold">
-                      {post.category}
-                    </span>
-                    <span>{post.date}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-black mb-3 leading-tight">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-700 mb-5 text-base leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  <button
-                    onClick={() => post.page ? handleNavigate(post.page) : alert('Funkce číst více není pro tento příspěvek implementována.')}
-                    className="w-full bg-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75"
-                  >
-                    Číst více
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </main>
-      )}
+            // Funkce pro aktualizaci konfigurace prohlížečů
+            window.updateBrowserConfig = (newConfig) => {
+                currentConfig = newConfig;
+                document.getElementById('browser-tiles-container').innerHTML = generateBrowserTiles(currentConfig);
+                // Aktualizovat styly tlačítek konfigurace
+                document.querySelectorAll('.config-button').forEach(button => {
+                    if (button.textContent.trim() === newConfig) {
+                        button.classList.add('bg-blue-500', 'text-white', 'shadow-lg');
+                        button.classList.remove('bg-gray-200', 'text-gray-700');
+                    } else {
+                        button.classList.remove('bg-blue-500', 'text-white', 'shadow-lg');
+                        button.classList.add('bg-gray-200', 'text-gray-700');
+                    }
+                });
+            };
+        }
 
-      {/* Tato část se vykreslí pouze pokud je currentPage 'browser-scores' */}
-      {currentPage === 'browser-scores' && <BrowserScoresPage onBackClick={() => handleNavigate('home')} />}
+        // Funkce pro vykreslení hlavní stránky blogu
+        function renderHomePage() {
+            const appRoot = document.getElementById('app-root');
+            appRoot.innerHTML = `
+                <header class="bg-black text-white py-6 shadow-lg rounded-b-xl">
+                    <div class="container mx-auto px-4 flex justify-between items-center">
+                        <h1 class="text-4xl font-extrabold text-yellow-400">
+                            <a href="#" class="hover:text-yellow-300 transition-colors duration-300" onclick="navigateTo('home')">
+                                Avio's Mix Content
+                            </a>
+                        </h1>
+                        <nav>
+                            <ul class="flex space-x-6">
+                                <li>
+                                    <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300" onclick="navigateTo('home')">
+                                        Domů
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300">
+                                        Technologie
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300">
+                                        Sport
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300">
+                                        Zábava
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
 
-      {/* Patička */}
-      <footer className="bg-black text-white py-8 mt-12 rounded-t-xl">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} Avio's Mix Content. Všechna práva vyhrazena.
-          </p>
-          <div className="flex justify-center space-x-4 mt-4">
-            <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
-              Ochrana osobních údajů
-            </a>
-            <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
-              Podmínky použití
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
+                <main class="container mx-auto px-4 py-12">
+                    <h2 class="text-5xl font-bold text-center mb-12 text-black">
+                        Nejnovější zprávy a inspirace
+                    </h2>
 
-export default App;
+                    <div class="flex flex-col items-center space-y-8">
+                        ${blogPostsData.map(post => `
+                            <div class="w-full max-w-4xl bg-gray-50 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-200">
+                                <div class="w-full h-60 overflow-hidden flex items-center justify-center bg-yellow-400">
+                                    ${post.teaserLogos ? `
+                                        <div class="flex flex-wrap justify-center items-center gap-2 p-4">
+                                            ${post.teaserLogos.map(logoName => `
+                                                <img src="${browserLogosTeaser[logoName]}" alt="${logoName} logo" class="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
+                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';" crossorigin="anonymous">
+                                            `).join('')}
+                                        </div>
+                                    ` : post.nhlTeaserLogos ? `
+                                        <div class="flex flex-wrap justify-center items-center gap-2 p-4">
+                                            ${post.nhlTeaserLogos.map(logoName => `
+                                                <img src="${nhlTeamLogosTeaser[logoName]}" alt="${logoName} logo" class="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
+                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';" crossorigin="anonymous">
+                                            `).join('')}
+                                        </div>
+                                    ` : `
+                                        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/000000?text=Obrázek+není+dostupný';" crossorigin="anonymous">
+                                    `}
+                                </div>
+
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
+                                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full font-semibold">
+                                            ${post.category}
+                                        </span>
+                                        <span>${post.date}</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-black mb-3 leading-tight">
+                                        ${post.title}
+                                    </h3>
+                                    <p class="text-gray-700 mb-5 text-base leading-relaxed">
+                                        ${post.excerpt}
+                                    </p>
+                                    <button
+                                        onclick="${post.page ? `navigateTo('${post.page}')` : `alert('Funkce číst více není pro tento příspěvek implementována.')`}"
+                                        class="w-full bg-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75"
+                                    >
+                                        Číst více
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </main>
+
+                <footer class="bg-black text-white py-8 mt-12 rounded-t-xl">
+                    <div class="container mx-auto px-4 text-center">
+                        <p class="text-gray-400 text-sm">
+                            &copy; ${new Date().getFullYear()} Avio's Mix Content. Všechna práva vyhrazena.
+                        </p>
+                        <div class="flex justify-center space-x-4 mt-4">
+                            <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
+                                Ochrana osobních údajů
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
+                                Podmínky použití
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+            `;
+        }
+
+        // Funkce pro navigaci mezi stránkami
+        window.navigateTo = (page) => {
+            currentPage = page;
+            if (currentPage === 'home') {
+                renderHomePage();
+            } else if (currentPage === 'browser-scores') {
+                renderBrowserScoresPage();
+            }
+        };
+
+        // Po načtení stránky vykreslíme domovskou stránku
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>
