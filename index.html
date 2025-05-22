@@ -21,6 +21,22 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
+        /* Ensure iframe is responsive */
+        .responsive-iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* 4:3 aspect ratio (height / width * 100%) */
+            height: 0;
+            overflow: hidden;
+        }
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -51,11 +67,12 @@
                     "Minnesota Wild", "Montreal Canadiens", "Nashville Predators", "New Jersey Devils",
                     "New York Islanders", "New York Rangers", "Ottawa Senators", "Philadelphia Flyers",
                     "Pittsburgh Penguins", "San Jose Sharks", "Seattle Kraken", "St. Louis Blues",
-                    "Tampa Bay Lightning", "Toronto Maple Leafs", "Vancouver Canucks", "Vegas Golden Knights",
-                    "Washington Capitals", "Winnipeg Jets"
+                    "Tampa Bay Lightning", "Toronto Maple Leafs",
+                    "Vancouver Canucks", "Vegas Golden Knights", "Washington Capitals", "Winnipeg Jets"
                 ],
                 category: 'Sport',
-                date: '2025-05-20'
+                date: '2025-05-20',
+                page: 'nhl-tierlist' // Přidáno pro navigaci na stránku s tierlistem
             },
             {
                 id: 3,
@@ -96,7 +113,8 @@
             "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
-            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png", // Nová URL pro Brave logo
+            // Používáme novou URL pro Brave logo
+            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
 
@@ -177,7 +195,8 @@
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
             "Opera Browser": "https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg",
-            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png", // Nová URL pro Brave logo
+            // Používáme novou URL pro Brave logo
+            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
 
@@ -277,6 +296,33 @@
                 });
             };
         }
+
+        // Funkce pro vykreslení stránky s NHL Tierlistem
+        function renderNhlTierlistPage() {
+            const appRoot = document.getElementById('app-root');
+            appRoot.innerHTML = `
+                <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                        <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                            &larr; Zpět na blog
+                        </button>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8">NHL Týmy Logo Tierlist</h1>
+                        <p class="text-gray-700 mb-6">
+                            Zde je náš tierlist log NHL týmů. Kliknutím na obrázek se dostanete na stránku s plnou velikostí.
+                        </p>
+                        <div class="flex justify-center mb-8">
+                            <a href="https://ibb.co/hFjyYdPc" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                                <img src="https://i.ibb.co/v4GHXd7h/NHLlogo-Tierlist.png" alt="NHLlogo-Tierlist" class="w-full h-auto object-contain">
+                            </a>
+                        </div>
+                    </div>
+                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
+                        <p>Obsah poskytuje Avio's Mix Content.</p>
+                    </footer>
+                </div>
+            `;
+        }
+
 
         // Funkce pro vykreslení hlavní stránky blogu
         function renderHomePage() {
@@ -395,6 +441,8 @@
                 renderHomePage();
             } else if (currentPage === 'browser-scores') {
                 renderBrowserScoresPage();
+            } else if (currentPage === 'nhl-tierlist') { // Nová podmínka pro NHL Tierlist
+                renderNhlTierlistPage();
             }
         };
 
