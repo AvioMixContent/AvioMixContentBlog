@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,17 +49,17 @@
         const blogPostsData = [
             {
                 id: 1,
-                title: 'Optimalizace prohlížečů: Tipy pro rychlejší a bezpečnější surfování',
-                excerpt: 'Zjistěte, jak nastavit svůj webový prohlížeč pro maximální výkon a ochranu soukromí. Od doplňků po pokročilá nastavení.',
+                title: 'Browser Optimization: Tips for Faster and Safer Surfing',
+                excerpt: 'Learn how to configure your web browser for maximum performance and privacy protection. From add-ons to advanced settings.',
                 teaserLogos: ["Google Chrome", "Microsoft Edge", "Mozilla Firefox", "Brave Browser", "Apple Safari"],
-                category: 'Technologie',
+                category: 'Technology',
                 date: '2025-05-22',
                 page: 'browser-scores'
             },
             {
                 id: 2,
-                title: 'NHL Teams Logo Tierlist: Která loga jsou nejlepší a proč?',
-                excerpt: 'Ponořte se do světa hokejových log! Analyzujeme design a historii nejlepších i nejhorších log týmů NHL.',
+                title: 'NHL Teams Logo Tierlist: Which Logos Are Best and Why?',
+                excerpt: 'Dive into the world of hockey logos! We analyze the design and history of the best and worst NHL team logos.',
                 nhlTeaserLogos: [
                     "Anaheim Ducks", "Arizona Coyotes", "Boston Bruins", "Buffalo Sabres", "Calgary Flames",
                     "Carolina Hurricanes", "Chicago Blackhawks", "Colorado Avalanche", "Columbus Blue Jackets",
@@ -70,51 +70,52 @@
                     "Tampa Bay Lightning", "Toronto Maple Leafs",
                     "Vancouver Canucks", "Vegas Golden Knights", "Washington Capitals", "Winnipeg Jets"
                 ],
-                category: 'Sport',
+                category: 'Sports',
                 date: '2025-05-20',
                 page: 'nhl-tierlist' // Added for navigation to the tierlist page
             },
             {
                 id: 3,
                 title: 'My NFL Teams Tierlist', // Changed title for the teaser tile
-                excerpt: 'Podívejte se na náš žebříček týmů NFL. Které týmy jsou na vrcholu a které potřebují zlepšení?', // Updated description
+                excerpt: 'Check out our NFL team ranking. Which teams are at the top and which need improvement?', // Updated description
                 // Custom image object for NFL teaser
                 image: {
                     type: 'custom-nfl-teaser',
                     text: 'My NFL Teams Tierlist',
                     logo: 'https://i.ibb.co/kVGF1KWF/NFLlogo.png' // Updated NFL logo URL to the new PNG
                 },
-                category: 'Sport', // Changed category
+                category: 'Sports', // Changed category
                 date: '2025-05-18',
                 page: 'nfl-tierlist-page' // Page for NFL Tierlist
             },
             {
                 id: 4,
                 title: 'Tierlist - Whom would I wish the Stanley Cup to?', // Updated title for the teaser tile
-                excerpt: 'Podívejte se na náš žebříček týmů NHL, kterým bychom nejvíce přáli získat Stanley Cup. Analyzujeme jejich šance a důvody, proč si zaslouží vítězství.', // Updated excerpt
+                excerpt: 'Check out our ranking of NHL teams we\'d most wish to win the Stanley Cup. We analyze their chances and reasons why they deserve victory.', // Updated excerpt
                 image: {
                     type: 'custom-stanley-cup-teaser',
                     text: 'Tierlist - Whom would I wish the Stanley Cup to?',
                     logo: 'https://i.ibb.co/0ppNWdtm/Stanley-Cup.png' // Updated Stanley Cup logo URL
                 },
-                category: 'Technologie',
+                category: 'Technology',
                 date: '2025-05-15',
                 page: 'stanley-cup-tierlist' // New page for Stanley Cup Tierlist
             },
             {
                 id: 5,
-                title: 'Fitness trendy 2025: Cvičení, které vás dostane do formy',
-                excerpt: 'Nejnovější přístupy k tréninku a výživě. Jak efektivně cvičit a dosáhnout svých fitness cílů s minimem úsilí.',
+                title: 'The best fitness YouTubers (In my opinion)', // Updated title for the teaser tile
+                excerpt: 'Discover why this fitness YouTuber stands out from the crowd. We break down their unique approach to workouts, nutrition, and motivation.', // Updated excerpt
                 image: 'https://placehold.co/600x400/000000/FFFFFF?text=Fitness',
-                category: 'Sport',
-                date: '2025-05-12'
+                category: 'Sports',
+                date: '2025-05-12',
+                page: 'fitness-youtuber-page' // New page for fitness YouTuber
             },
             {
                 id: 6,
-                title: 'Seriálový maraton: Nejlepší novinky a tipy, co sledovat tento měsíc',
-                excerpt: 'Přehled nejžhavějších seriálových novinek a doporučení, které vás pohltí. Od dramat po komedie – každý si najde to své.',
+                title: 'Series Marathon: Best New Releases and Tips on What to Watch This Month',
+                excerpt: 'An overview of the hottest new series and recommendations that will captivate you. From dramas to comedies – there\'s something for everyone.',
                 image: 'https://placehold.co/600x400/FFFFFF/FFD700?text=Seriály',
-                category: 'Zábava',
+                category: 'Entertainment',
                 date: '2025-05-10'
             },
         ];
@@ -168,36 +169,36 @@
         // Data for BrowserScoresPage
         const browserScoresData = {
             "i7 13980HX RTX 4090 laptop 32GB RAM DDR5 4800MHz": {
-                "Google Chrome": { score: 35.1, description: "Optimalizováno pro extrémní výkon na špičkových herních notebocích." },
-                "Microsoft Edge": { score: 35.5, description: "Velmi rychlý a efektivní, ideální pro moderní notebooky." },
-                "Mozilla Firefox": { score: 29.5, description: "Výkonný a zaměřený na soukromí, s aktivní komunitou." },
-                "Opera Browser": { score: 32.8, description: "Inovativní funkce a vestavěná VPN, skvělé na výkonných strojích." },
-                "Brave Browser": { score: 33.3, description: "Rychlý a bezpečný, blokuje reklamy a trackery, maximální výkon." },
-                "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
+                "Google Chrome": { score: 35.1, description: "Optimized for extreme performance on high-end gaming laptops." },
+                "Microsoft Edge": { score: 35.5, description: "Very fast and efficient, ideal for modern laptops." },
+                "Mozilla Firefox": { score: 29.5, description: "Powerful and privacy-focused, with an active community." },
+                "Opera Browser": { score: 32.8, description: "Innovative features and built-in VPN, great on powerful machines." },
+                "Brave Browser": { score: 33.3, description: "Fast and secure, blocks ads and trackers, maximum performance." },
+                "Apple Safari": { score: 0.0, description: "Optimized for the Apple ecosystem, fast and energy efficient." }
             },
             "7800X3D RTX 4080 Super 32GB RAM DDR6 6000MHz CL28": {
-                "Google Chrome": { score: 34.5, description: "Špičkový výkon pro desktopové herní sestavy s RAM s nízkou latencí." },
-                "Microsoft Edge": { score: 34.9, description: "Extrémně rychlý, plně využívá moderní hardware." },
-                "Mozilla Firefox": { score: 28.2, description: "Vynikající výkon a stabilita na systémech s vysokou frekvencí." },
-                "Opera Browser": { score: 31.8, description: "Velmi rychlý s pokročilými funkcemi, ideální pro náročné uživatele." },
-                "Brave Browser": { score: 33.7, description: "Nejrychlejší načítání a prohlížení díky optimalizaci a blokování." },
-                "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
+                "Google Chrome": { score: 34.5, description: "Top performance for desktop gaming setups with low-latency RAM." },
+                "Microsoft Edge": { score: 34.9, description: "Extremely fast, fully utilizes modern hardware." },
+                "Mozilla Firefox": { score: 28.2, description: "Excellent performance and stability on high-frequency systems." },
+                "Opera Browser": { score: 31.8, description: "Very fast with advanced features, ideal for demanding users." },
+            "Brave Browser": { score: 33.7, description: "Fastest loading and browsing thanks to optimization and blocking." },
+                "Apple Safari": { score: 0.0, description: "Optimized for the Apple ecosystem, fast and energy efficient." }
             },
             "i5 10400 16GB RAM DDR5 2666MHz": {
-                "Google Chrome": { score: 17.3, description: "Spolehlivý výkon pro každodenní použití na standardních sestavách." },
-                "Microsoft Edge": { score: 18.3, description: "Dobrá rovnováha mezi rychlostí a spotřebou zdrojů." },
-                "Mozilla Firefox": { score: 14.9, description: "Stabilní výkon, vhodné pro běžné úkoly." },
-                "Opera Browser": { score: 16.2, description: "Plynulý provoz s užitečnými doplňky." },
-                "Brave Browser": { score: 17.1, description: "Rychlé načítání stránek díky blokování reklam." },
-                "Apple Safari": { score: 0.0, description: "Efektivní prohlížeč s dobrým řízením spotřeby energie." }
+                "Google Chrome": { score: 17.3, description: "Reliable performance for everyday use on standard setups." },
+                "Microsoft Edge": { score: 18.3, description: "Good balance between speed and resource consumption." },
+                "Mozilla Firefox": { score: 14.9, description: "Stable performance, suitable for common tasks." },
+                "Opera Browser": { score: 16.2, description: "Smooth operation with useful add-ons." },
+                "Brave Browser": { score: 17.1, description: "Fast page loading thanks to ad blocking." },
+                "Apple Safari": { score: 0.0, description: "Efficient browser with good power management." }
             },
             "i7 10750H RTX 2070 Super laptop 16GB RAM DDR5 2666MHz": {
-                "Google Chrome": { score: 18.5, description: "Dobrý výkon pro středně výkonné herní notebooky." },
-                "Microsoft Edge": { score: 19.0, description: "Efektivní a rychlý, vhodné pro multitasking." },
-                "Mozilla Firefox": { score: 21.5, description: "Spolehlivý a bezpečný na mobilních platformách." },
-                "Opera Browser": { score: 17.8, description: "Plynulý zážitek s vestavěnými funkcemi." },
-                "Brave Browser": { score: 18.7, description: "Rychlé načítání a ochrana soukromí na cestách." },
-                "Apple Safari": { score: 0.0, description: "Optimalizováno pro ekosystém Apple, rychlé a energeticky úsporné." }
+                "Google Chrome": { score: 18.5, description: "Good performance for mid-range gaming laptops." },
+                "Microsoft Edge": { score: 19.0, description: "Efficient and fast, suitable for multitasking." },
+                "Mozilla Firefox": { score: 21.5, description: "Reliable and secure on mobile platforms." },
+                "Opera Browser": { score: 17.8, description: "Smooth experience with built-in features." },
+                "Brave Browser": { score: 18.7, description: "Fast loading and privacy protection on the go." },
+                "Apple Safari": { score: 0.0, description: "Optimized for the Apple ecosystem, fast and energy efficient." }
             }
         };
 
@@ -260,7 +261,7 @@
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
                     <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
-                            &larr; Zpět na blog
+                            &larr; Back to blog
                         </button>
                         <div class="flex justify-center mb-4">
                             <img src="https://aviomixcontent.github.io/browserspeedlogo/LogoSDMTRmini.png" alt="Logo Speedometer" class="max-w-[150px] h-auto">
@@ -315,20 +316,21 @@
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
                     <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
-                            &larr; Zpět na blog
+                            &larr; Back to blog
                         </button>
-                        <h1 class="text-4xl font-bold text-gray-800 mb-8">NHL Týmy Logo Tierlist</h1>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8">NHL Teams Logo Tierlist</h1>
                         <p class="text-gray-700 mb-6">
-                            Zde je náš tierlist log NHL týmů. Kliknutím na obrázek se dostanete na stránku s plnou velikostí.
+                            Here is our tier list of NHL team logos. Click on the image to go to the full-size page.
                         </p>
                         <div class="flex justify-center mb-8">
                             <a href="https://ibb.co/hFjyYdPc" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                                [Image of NHLlogo-Tierlist]
                                 <img src="https://i.ibb.co/v4GHXd7h/NHLlogo-Tierlist.png" alt="NHLlogo-Tierlist" class="w-full h-auto object-contain">
                             </a>
                         </div>
                     </div>
                     <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
-                        <p>Obsah poskytuje Avio's Mix Content.</p>
+                        <p>Content provided by Avio's Mix Content.</p>
                     </footer>
                 </div>
             `;
@@ -341,20 +343,21 @@
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-yellow-100 font-inter">
                     <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
-                            &larr; Zpět na blog
+                            &larr; Back to blog
                         </button>
                         <h1 class="text-4xl font-bold text-gray-800 mb-8">My NFL Teams Tierlist</h1>
                         <p class="text-gray-700 mb-6">
-                            Zde je náš tierlist týmů NFL. Kliknutím na obrázek se dostanete na stránku s plnou velikostí.
+                            Check out our NFL team ranking. Click on the image to go to the full-size page.
                         </p>
                         <div class="flex justify-center mb-8">
                             <a href="https://ibb.co/ZpN28TjC" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                                [Image of NFLTeams-Tierlist]
                                 <img src="https://i.ibb.co/KpmKqyPH/NFLTeams-Tierlist.png" alt="NFL Teams Tierlist" class="w-full h-auto object-contain">
                             </a>
                         </div>
                     </div>
                     <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8 bg-yellow-200 rounded-b-xl">
-                        <p>Obsah poskytuje Avio's Mix Content.</p>
+                        <p>Content provided by Avio's Mix Content.</p>
                     </footer>
                 </div>
             `;
@@ -367,20 +370,50 @@
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-yellow-100 font-inter">
                     <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
-                            &larr; Zpět na blog
+                            &larr; Back to blog
                         </button>
                         <h1 class="text-4xl font-bold text-gray-800 mb-8">Tierlist - Whom would I wish the Stanley Cup to?</h1>
                         <p class="text-gray-700 mb-6">
-                            Zde je náš žebříček týmů, kterým bychom přáli Stanley Cup. Kliknutím na obrázek se dostanete na stránku s plnou velikostí.
+                            Here is our ranking of teams we'd wish the Stanley Cup to. Click on the image to go to the full-size page.
                         </p>
                         <div class="flex justify-center mb-8">
                             <a href="https://ibb.co/kRmkYjN/NHLStanle-Cup-Win-Tierlist.png" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                                [Image of NHL Stanley Cup Win Tierlist]
                                 <img src="https://i.ibb.co/kRmkYjN/NHLStanle-Cup-Win-Tierlist.png" alt="NHL Stanley Cup Win Tierlist" class="w-full h-auto object-contain">
                             </a>
                         </div>
                     </div>
                     <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8 bg-yellow-200 rounded-b-xl">
-                        <p>Obsah poskytuje Avio's Mix Content.</p>
+                        <p>Content provided by Avio's Mix Content.</p>
+                    </footer>
+                </div>
+            `;
+        }
+
+        // Function to render the Fitness YouTuber page
+        function renderFitnessYouTuberPage() {
+            const appRoot = document.getElementById('app-root');
+            appRoot.innerHTML = `
+                <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                        <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                            &larr; Back to blog
+                        </button>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8">The best fitness YouTubers (In my opinion)</h1>
+                        <p class="text-gray-700 mb-6">
+                            Here's a list of the best fitness YouTubers, in my opinion, who provide great content and motivation.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-800 text-lg mb-8">
+                            <li>Jonni Shreve</li>
+                            <li>Jeremy Ethier</li>
+                            <li>Renaissance Periodization</li>
+                            <li>Jeff Nippard</li>
+                            <li>Aleš Lamka</li>
+                            <li>Fitness007 (Jirka Vacek)</li>
+                        </ul>
+                    </div>
+                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
+                        <p>Content provided by Avio's Mix Content.</p>
                     </footer>
                 </div>
             `;
@@ -402,22 +435,22 @@
                             <ul class="flex space-x-6">
                                 <li>
                                     <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300" onclick="navigateTo('home')">
-                                        Domů
+                                        Home
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300">
-                                        Technologie
+                                        Technology
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300">
-                                        Sport
+                                        Sports
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300">
-                                        Zábava
+                                        Entertainment
                                     </a>
                                 </li>
                             </ul>
@@ -427,7 +460,7 @@
 
                 <main class="container mx-auto px-4 py-12">
                     <h2 class="text-5xl font-bold text-center mb-12 text-black">
-                        Nejnovější zprávy a inspirace
+                        A bit of everything
                     </h2>
 
                     <div class="flex flex-col items-center space-y-8">
@@ -464,7 +497,7 @@
                                         </div>
                                     ` : `
                                         <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/000000?text=Obrázek+není+dostupný';">
+                                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/000000?text=Image+not+available';">
                                     `}
                                 </div>
 
@@ -482,10 +515,10 @@
                                         ${post.excerpt}
                                     </p>
                                     <button
-                                        onclick="${post.page ? `navigateTo('${post.page}')` : `alert('Funkce číst více není pro tento příspěvek implementována.')`}"
+                                        onclick="${post.page ? `navigateTo('${post.page}')` : `alert('Read more function not implemented for this post.')`}"
                                         class="w-full bg-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75"
                                     >
-                                        Číst více
+                                        Read more
                                     </button>
                                 </div>
                             </div>
@@ -496,14 +529,14 @@
                 <footer class="bg-black text-white py-8 mt-12 rounded-t-xl">
                     <div class="container mx-auto px-4 text-center">
                         <p class="text-gray-400 text-sm">
-                            &copy; ${new Date().getFullYear()} Avio's Mix Content. Všechna práva vyhrazena.
+                            &copy; ${new Date().getFullYear()} Avio's Mix Content. All rights reserved.
                         </p>
                         <div class="flex justify-center space-x-4 mt-4">
                             <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
-                                Ochrana osobních údajů
+                                Privacy Policy
                             </a>
                             <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
-                                Podmínky použití
+                                Terms of Use
                             </a>
                         </div>
                     </div>
@@ -524,6 +557,8 @@
                 renderNflTierlistPage();
             } else if (currentPage === 'stanley-cup-tierlist') { // New condition for Stanley Cup Tierlist
                 renderStanleyCupTierlistPage();
+            } else if (currentPage === 'fitness-youtuber-page') { // New condition for Fitness YouTuber page
+                renderFitnessYouTuberPage();
             }
         };
 
