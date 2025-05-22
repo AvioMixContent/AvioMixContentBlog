@@ -45,13 +45,14 @@
         </div>
 
     <script>
-        // Data pro blogové příspěvky
+        // Data for blog posts
         const blogPostsData = [
             {
                 id: 1,
-                title: 'Browser Optimization: Tips for Faster and Safer Surfing',
-                excerpt: 'Learn how to configure your web browser for maximum performance and privacy protection. From add-ons to advanced settings.',
-                teaserLogos: ["Google Chrome", "Microsoft Edge", "Mozilla Firefox", "Brave Browser", "Apple Safari"],
+                title: 'Browser speed comparison', // Changed article title
+                excerpt: 'Check out our independent web browser speed comparison and find out which one is the fastest for your needs.', // Changed excerpt text
+                // Changed to a placeholder image without logos with yellow background and black text, text changed to Browsers
+                image: 'https://placehold.co/800x600/FFD700/000000?text=Browsers',
                 category: 'Technology',
                 date: '2025-05-22',
                 page: 'browser-scores'
@@ -60,16 +61,8 @@
                 id: 2,
                 title: 'NHL Teams Logo Tierlist: Which Logos Are Best and Why?',
                 excerpt: 'Dive into the world of hockey logos! We analyze the design and history of the best and worst NHL team logos.',
-                nhlTeaserLogos: [
-                    "Anaheim Ducks", "Arizona Coyotes", "Boston Bruins", "Buffalo Sabres", "Calgary Flames",
-                    "Carolina Hurricanes", "Chicago Blackhawks", "Colorado Avalanche", "Columbus Blue Jackets",
-                    "Dallas Stars", "Detroit Red Wings", "Edmonton Oilers", "Florida Panthers", "Los Angeles Kings",
-                    "Minnesota Wild", "Montreal Canadiens", "Nashville Predators", "New Jersey Devils",
-                    "New York Islanders", "New York Rangers", "Ottawa Senators", "Philadelphia Flyers",
-                    "Pittsburgh Penguins", "San Jose Sharks", "Seattle Kraken", "St. Louis Blues",
-                    "Tampa Bay Lightning", "Toronto Maple Leafs",
-                    "Vancouver Canucks", "Vegas Golden Knights", "Washington Capitals", "Winnipeg Jets"
-                ],
+                // Changed to a placeholder image without logos with black background and yellow text, text changed to Tierlist
+                image: 'https://placehold.co/800x600/000000/FFD700?text=Tierlist',
                 category: 'Sports',
                 date: '2025-05-20',
                 page: 'nhl-tierlist' // Added for navigation to the tierlist page
@@ -78,12 +71,8 @@
                 id: 3,
                 title: 'My NFL Teams Tierlist', // Changed title for the teaser tile
                 excerpt: 'Check out our NFL team ranking. Which teams are at the top and which need improvement?', // Updated description
-                // Custom image object for NFL teaser
-                image: {
-                    type: 'custom-nfl-teaser',
-                    text: 'My NFL Teams Tierlist',
-                    logo: 'https://i.ibb.co/kVGF1KWF/NFLlogo.png' // Updated NFL logo URL to the new PNG
-                },
+                // Changed to a placeholder image without logos with white background and black text, text changed to Tierlist
+                image: 'https://placehold.co/800x600/FFFFFF/000000?text=Tierlist', // Updated to a simple placeholder image
                 category: 'Sports', // Changed category
                 date: '2025-05-18',
                 page: 'nfl-tierlist-page' // Page for NFL Tierlist
@@ -92,11 +81,8 @@
                 id: 4,
                 title: 'Tierlist - Whom would I wish the Stanley Cup to?', // Updated title for the teaser tile
                 excerpt: 'Check out our ranking of NHL teams we\'d most wish to win the Stanley Cup. We analyze their chances and reasons why they deserve victory.', // Updated excerpt
-                image: {
-                    type: 'custom-stanley-cup-teaser',
-                    text: 'Tierlist - Whom would I wish the Stanley Cup to?',
-                    logo: 'https://i.ibb.co/0ppNWdtm/Stanley-Cup.png' // Updated Stanley Cup logo URL
-                },
+                // Changed to a placeholder image without logos with yellow background and white text, text changed to Tierlist
+                image: 'https://placehold.co/800x600/FFD700/FFFFFF?text=Tierlist', // Updated to a simple placeholder image
                 category: 'Technology',
                 date: '2025-05-15',
                 page: 'stanley-cup-tierlist' // New page for Stanley Cup Tierlist
@@ -105,7 +91,7 @@
                 id: 5,
                 title: 'The best fitness YouTubers (In my opinion)', // Updated title for the teaser tile
                 excerpt: 'Discover why this fitness YouTuber stands out from the crowd. We break down their unique approach to workouts, nutrition, and motivation.', // Updated excerpt
-                image: 'https://placehold.co/600x400/000000/FFFFFF?text=Fitness',
+                image: 'https://placehold.co/800x600/000000/FFFFFF?text=Fitness', // Changed text to Fitness
                 category: 'Sports',
                 date: '2025-05-12',
                 page: 'fitness-youtuber-page' // New page for fitness YouTuber
@@ -114,23 +100,51 @@
                 id: 6,
                 title: 'Series Marathon: Best New Releases and Tips on What to Watch This Month',
                 excerpt: 'An overview of the hottest new series and recommendations that will captivate you. From dramas to comedies – there\'s something for everyone.',
-                image: 'https://placehold.co/600x400/FFFFFF/FFD700?text=Seriály',
+                image: 'https://placehold.co/800x600/FFFFFF/000000?text=TV+Series', // Changed text to TV Series
                 category: 'Entertainment',
-                date: '2025-05-10'
+                date: '2025-05-10',
+                page: 'tv-series-page' // Added page for navigation
+            },
+            // New feed items added below
+            {
+                id: 7,
+                title: 'Top 5 Tech Gadgets of 2025',
+                excerpt: 'Explore the most innovative and exciting tech gadgets released this year that are changing the way we live and work.',
+                image: 'https://placehold.co/800x600/000000/FFD700?text=Games', // Changed text to Games
+                category: 'Technology',
+                date: '2025-05-08',
+                page: 'article-7' // Added page for navigation
+            },
+            {
+                id: 8,
+                title: 'Understanding the Offside Rule in Soccer',
+                excerpt: 'A comprehensive guide to one of soccer\'s most debated rules. Learn the nuances and how it impacts the game.',
+                image: 'https://placehold.co/800x600/FFD700/000000?text=Fitness', // Changed text to Fitness
+                category: 'Sports',
+                date: '2025-05-05',
+                page: 'article-8' // Added page for navigation
+            },
+            {
+                id: 9,
+                title: 'Classic Movies You Must Watch',
+                excerpt: 'A curated list of timeless films that have shaped cinema and continue to captivate audiences worldwide.',
+                image: 'https://placehold.co/800x600/FFFFFF/000000?text=Movies',
+                category: 'Entertainment',
+                date: '2025-05-01',
+                page: 'article-9' // Added page for navigation
             },
         ];
 
-        // Skutečná loga prohlížečů pro použití v teaseru
+        // Actual browser logos for teaser (this data will no longer be used in the main feed)
         const browserLogosTeaser = {
             "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
-            // Using the new URL for Brave logo
             "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
 
-        // New object for NHL team logos in the teaser (using placeholder images with colors)
+        // New object for NHL team logos in the teaser (this data will no longer be used in the main feed)
         const nhlTeamLogosTeaser = {
             "Anaheim Ducks": "https://placehold.co/48x48/F47A38/000000?text=ANA", // Orange/Black
             "Arizona Coyotes": "https://placehold.co/48x48/8C2633/FFFFFF?text=ARI", // Maroon/White
@@ -207,7 +221,6 @@
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
             "Opera Browser": "https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg",
-            // Using the new URL for Brave logo
             "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
@@ -247,7 +260,7 @@
                     >
                         <div class="w-[72px] h-[72px] rounded-full bg-white flex items-center justify-center mb-3 border-[3px] border-white overflow-hidden">
                             <img src="${browserLogosFull[browserData.name]}" alt="${browserData.name} logo" class="w-full h-full object-cover"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/72x72/ffffff/000000?text=Logo';">
+                                    onerror="this.onerror=null;this.src='https://placehold.co/72x72/ffffff/000000?text=Logo';">
                         </div>
                         <h2 class="text-lg font-bold mb-2">${browserData.name}</h2>
                         <p class="text-4xl font-extrabold mb-3">${browserData.score}</p>
@@ -259,7 +272,7 @@
             // Render the page
             appRoot.innerHTML = `
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
-                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
                             &larr; Back to blog
                         </button>
@@ -286,7 +299,7 @@
                         </div>
                     </div>
 
-                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
                         <p>Updated on May 22, 2025. Latest browser versions used as of the update date.</p>
                     </footer>
                 </div>
@@ -309,12 +322,64 @@
             };
         }
 
+        // Function to render a generic article page
+        function renderArticlePage(articleId) {
+            const post = blogPostsData.find(p => p.page === articleId);
+            const appRoot = document.getElementById('app-root');
+
+            if (!post) {
+                appRoot.innerHTML = `
+                    <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                        <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                            <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                                &larr; Back to blog
+                            </button>
+                            <h1 class="text-4xl font-bold text-gray-800 mb-8">Article Not Found</h1>
+                            <p class="text-gray-700 mb-6">The article you are looking for does not exist.</p>
+                        </div>
+                        <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
+                            <p>Content provided by Avio's Mix Content.</p>
+                        </footer>
+                    </div>
+                `;
+                return;
+            }
+
+            appRoot.innerHTML = `
+                <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                        <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                            &larr; Back to blog
+                        </button>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8">${post.title}</h1>
+                        <p class="text-gray-700 mb-6">${post.excerpt}</p>
+                        <div class="flex justify-center mb-8">
+                            <img src="${post.image}" alt="${post.title}" class="w-full h-auto object-contain rounded-lg shadow-lg">
+                        </div>
+                        <p class="text-gray-600 text-left mt-4">
+                            This is a placeholder for the full article content. In a real application,
+                            more detailed text, images, and other media would be loaded here.
+                            The content would typically be fetched from a database or a markdown file.
+                            For now, enjoy this brief overview and imagine the possibilities!
+                        </p>
+                        <p class="text-gray-600 text-left mt-2">
+                            Category: ${post.category} | Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        </p>
+                    </div>
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
+                        <p>Content provided by Avio's Mix Content.</p>
+                    </footer>
+                </div>
+            `;
+        }
+
+
         // Function to render the NHL Tierlist page
         function renderNhlTierlistPage() {
             const appRoot = document.getElementById('app-root');
             appRoot.innerHTML = `
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
-                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
                             &larr; Back to blog
                         </button>
@@ -323,13 +388,13 @@
                             Here is our tier list of NHL team logos. Click on the image to go to the full-size page.
                         </p>
                         <div class="flex justify-center mb-8">
-                            <a href="https://ibb.co/hFjyYdPc" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                            <a href="https://ibb.co/hFjyYdPc" target="_blank" class="block w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
                                 [Image of NHLlogo-Tierlist]
                                 <img src="https://i.ibb.co/v4GHXd7h/NHLlogo-Tierlist.png" alt="NHLlogo-Tierlist" class="w-full h-auto object-contain">
                             </a>
                         </div>
                     </div>
-                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
                         <p>Content provided by Avio's Mix Content.</p>
                     </footer>
                 </div>
@@ -341,7 +406,7 @@
             const appRoot = document.getElementById('app-root');
             appRoot.innerHTML = `
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-yellow-100 font-inter">
-                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
                             &larr; Back to blog
                         </button>
@@ -350,13 +415,13 @@
                             Check out our NFL team ranking. Click on the image to go to the full-size page.
                         </p>
                         <div class="flex justify-center mb-8">
-                            <a href="https://ibb.co/ZpN28TjC" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                            <a href="https://ibb.co/ZpN28TjC" target="_blank" class="block w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
                                 [Image of NFLTeams-Tierlist]
                                 <img src="https://i.ibb.co/KpmKqyPH/NFLTeams-Tierlist.png" alt="NFL Teams Tierlist" class="w-full h-auto object-contain">
                             </a>
                         </div>
                     </div>
-                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8 bg-yellow-200 rounded-b-xl">
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8 bg-yellow-200 rounded-b-xl">
                         <p>Content provided by Avio's Mix Content.</p>
                     </footer>
                 </div>
@@ -368,7 +433,7 @@
             const appRoot = document.getElementById('app-root');
             appRoot.innerHTML = `
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-yellow-100 font-inter">
-                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
                             &larr; Back to blog
                         </button>
@@ -377,13 +442,13 @@
                             Here is our ranking of teams we'd wish the Stanley Cup to. Click on the image to go to the full-size page.
                         </p>
                         <div class="flex justify-center mb-8">
-                            <a href="https://ibb.co/kRmkYjN/NHLStanle-Cup-Win-Tierlist.png" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                            <a href="https://ibb.co/kRmkYjN/NHLStanle-Cup-Win-Tierlist.png" target="_blank" class="block w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
                                 [Image of NHL Stanley Cup Win Tierlist]
                                 <img src="https://i.ibb.co/kRmkYjN/NHLStanle-Cup-Win-Tierlist.png" alt="NHL Stanley Cup Win Tierlist" class="w-full h-auto object-contain">
                             </a>
                         </div>
                     </div>
-                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8 bg-yellow-200 rounded-b-xl">
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8 bg-yellow-200 rounded-b-xl">
                         <p>Content provided by Avio's Mix Content.</p>
                     </footer>
                 </div>
@@ -395,7 +460,7 @@
             const appRoot = document.getElementById('app-root');
             appRoot.innerHTML = `
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
-                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
                         <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
                             &larr; Back to blog
                         </button>
@@ -412,7 +477,84 @@
                             <li>Fitness007 (Jirka Vacek)</li>
                         </ul>
                     </div>
-                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8">
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
+                        <p>Content provided by Avio's Mix Content.</p>
+                    </footer>
+                </div>
+            `;
+        }
+
+        // Function to render the TV Series page
+        function renderTvSeriesPage() {
+            const post = blogPostsData.find(p => p.page === 'tv-series-page');
+            const appRoot = document.getElementById('app-root');
+
+            if (!post) {
+                appRoot.innerHTML = `
+                    <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                        <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                            <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                                &larr; Back to blog
+                            </button>
+                            <h1 class="text-4xl font-bold text-gray-800 mb-8">Article Not Found</h1>
+                            <p class="text-gray-700 mb-6">The article you are looking for does not exist.</p>
+                        </div>
+                        <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
+                            <p>Content provided by Avio's Mix Content.</p>
+                        </footer>
+                    </div>
+                `;
+                return;
+            }
+
+            appRoot.innerHTML = `
+                <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                        <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                            &larr; Back to blog
+                        </button>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8">${post.title}</h1>
+                        <p class="text-gray-700 mb-6">${post.excerpt}</p>
+                        <div class="flex justify-center mb-8">
+                            <img src="${post.image}" alt="${post.title}" class="w-full h-auto object-contain rounded-lg shadow-lg">
+                        </div>
+                        <p class="text-gray-600 text-left mt-4">
+                            This is a placeholder for the full article content about TV Series.
+                            It would typically include more details about new releases, streaming tips,
+                            and recommendations for different genres.
+                        </p>
+                        <p class="text-gray-600 text-left mt-2">
+                            Category: ${post.category} | Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        </p>
+                    </div>
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
+                        <p>Content provided by Avio's Mix Content.</p>
+                    </footer>
+                </div>
+            `;
+        }
+
+        // Function to render the About page
+        function renderAboutPage() {
+            const appRoot = document.getElementById('app-root');
+            appRoot.innerHTML = `
+                <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
+                    <div class="w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                        <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                            &larr; Back to blog
+                        </button>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8">About Avio's Mix Content</h1>
+                        <p class="text-gray-700 mb-6">
+                            Welcome to Avio's Mix Content! This blog is a place where you can find a variety of articles
+                            on different topics, including technology, sports, and entertainment.
+                            Our goal is to provide engaging and informative content for everyone.
+                        </p>
+                        <p class="text-gray-700 mb-6">
+                            We are passionate about sharing our insights and opinions, and we hope you find our articles
+                            both enjoyable and thought-provoking. Stay tuned for more mixed content coming your way!
+                        </p>
+                    </div>
+                    <footer class="w-full text-center text-gray-800 text-lg font-semibold mt-8">
                         <p>Content provided by Avio's Mix Content.</p>
                     </footer>
                 </div>
@@ -425,7 +567,7 @@
             const appRoot = document.getElementById('app-root');
             appRoot.innerHTML = `
                 <header class="bg-black text-white py-6 shadow-lg rounded-b-xl">
-                    <div class="container mx-auto px-4 flex justify-between items-center">
+                    <div class="container mx-auto w-full px-4 flex justify-between items-center">
                         <h1 class="text-4xl font-extrabold text-yellow-400">
                             <a href="#" class="hover:text-yellow-300 transition-colors duration-300" onclick="navigateTo('home')">
                                 Avio's Mix Content
@@ -453,116 +595,103 @@
                                         Entertainment
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300" onclick="navigateTo('fitness-youtuber-page')">
+                                        Fitness
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lg hover:text-yellow-400 transition-colors duration-300" onclick="navigateTo('about-page')">
+                                        About
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
                 </header>
 
-                <main class="container mx-auto px-4 py-12">
+                <main class="w-full px-4 py-12">
                     <h2 class="text-5xl font-bold text-center mb-12 text-black">
                         A bit of everything
                     </h2>
 
                     <div class="flex flex-col items-center space-y-8">
                         ${blogPostsData.map(post => `
-                            <div class="w-full max-w-4xl bg-gray-50 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-200">
+                            <div class="w-full bg-gray-50 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl border border-gray-200">
                                 <div class="w-full h-60 overflow-hidden flex items-center justify-center bg-yellow-400">
-                                    ${post.teaserLogos ? `
-                                        <div class="flex flex-wrap justify-center items-center gap-2 p-4">
-                                            ${post.teaserLogos.map(logoName => `
-                                                <img src="${browserLogosTeaser[logoName]}" alt="${logoName} logo" class="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
-                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';">
-                                            `).join('')}
-                                        </div>
-                                    ` : post.nhlTeaserLogos ? `
-                                        <div class="flex flex-wrap justify-center items-center gap-2 p-4">
-                                            ${post.nhlTeaserLogos.map(logoName => `
-                                                <img src="${nhlTeamLogosTeaser[logoName]}" alt="${logoName} logo" class="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
-                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';">
-                                            `).join('')}
-                                        </div>
-                                    ` : post.image.type === 'custom-nfl-teaser' ? `
-                                        <div class="relative w-full h-full flex flex-col items-center justify-center p-4">
-                                            <h3 class="text-black text-2xl font-bold text-center mb-2">
-                                                ${post.image.text}
-                                            </h3>
-                                            <img src="${post.image.logo}" alt="NFL Logo" class="w-24 h-auto object-contain">
-                                        </div>
-                                    ` : post.image.type === 'custom-stanley-cup-teaser' ? `
-                                        <div class="relative w-full h-full flex flex-col items-center justify-center p-4">
-                                            <h3 class="text-black text-2xl font-bold text-center mb-2">
-                                                ${post.image.text}
-                                            </h3>
-                                            <img src="${post.image.logo}" alt="Stanley Cup Logo" class="w-20 h-auto object-contain">
-                                        </div>
+                                    ${post.page ? `
+                                        <a href="#" onclick="navigateTo('${post.page}'); return false;" class="block w-full h-full">
+                                            <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover">
+                                        </a>
                                     ` : `
-                                        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/000000?text=Image+not+available';">
+                                        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover">
                                     `}
                                 </div>
-
                                 <div class="p-6">
-                                    <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
-                                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full font-semibold">
-                                            ${post.category}
-                                        </span>
-                                        <span>${post.date}</span>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-2">${post.title}</h3>
+                                    <p class="text-gray-600 mb-4">${post.excerpt}</p>
+                                    <div class="flex justify-between items-center text-sm text-gray-500">
+                                        <span>${post.category}</span>
+                                        <span>${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                                     </div>
-                                    <h3 class="text-2xl font-bold text-black mb-3 leading-tight">
-                                        ${post.title}
-                                    </h3>
-                                    <p class="text-gray-700 mb-5 text-base leading-relaxed">
-                                        ${post.excerpt}
-                                    </p>
-                                    <button
-                                        onclick="${post.page ? `navigateTo('${post.page}')` : `alert('Read more function not implemented for this post.')`}"
-                                        class="w-full bg-yellow-400 text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75"
-                                    >
-                                        Read more
-                                    </button>
+                                    ${post.page ? `
+                                        <button onclick="navigateTo('${post.page}')" class="mt-4 bg-yellow-400 text-black font-semibold py-2 px-4 rounded-lg hover:bg-yellow-500 transition-colors duration-300">
+                                            Read More
+                                        </button>
+                                    ` : ''}
                                 </div>
                             </div>
                         `).join('')}
                     </div>
                 </main>
 
-                <footer class="bg-black text-white py-8 mt-12 rounded-t-xl">
-                    <div class="container mx-auto px-4 text-center">
-                        <p class="text-gray-400 text-sm">
-                            &copy; ${new Date().getFullYear()} Avio's Mix Content. All rights reserved.
-                        </p>
-                        <div class="flex justify-center space-x-4 mt-4">
-                            <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
-                                Privacy Policy
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">
-                                Terms of Use
-                            </a>
-                        </div>
+                <footer class="bg-black text-white py-6 mt-12 rounded-t-xl">
+                    <div class="container mx-auto w-full px-4 text-center">
+                        <p>&copy; 2025 Avio's Mix Content. All rights reserved.</p>
                     </div>
                 </footer>
             `;
         }
 
-        // Function for navigating between pages
-        window.navigateTo = (page) => {
+        // Function to handle navigation
+        function navigateTo(page) {
             currentPage = page;
-            if (currentPage === 'home') {
-                renderHomePage();
-            } else if (currentPage === 'browser-scores') {
-                renderBrowserScoresPage();
-            } else if (currentPage === 'nhl-tierlist') { // New condition for NHL Tierlist
-                renderNhlTierlistPage();
-            } else if (currentPage === 'nfl-tierlist-page') { // New condition for NFL Tierlist
-                renderNflTierlistPage();
-            } else if (currentPage === 'stanley-cup-tierlist') { // New condition for Stanley Cup Tierlist
-                renderStanleyCupTierlistPage();
-            } else if (currentPage === 'fitness-youtuber-page') { // New condition for Fitness YouTuber page
-                renderFitnessYouTuberPage();
+            switch (page) {
+                case 'home':
+                    renderHomePage();
+                    break;
+                case 'browser-scores':
+                    renderBrowserScoresPage();
+                    break;
+                case 'nhl-tierlist':
+                    renderNhlTierlistPage();
+                    break;
+                case 'nfl-tierlist-page':
+                    renderNflTierlistPage();
+                    break;
+                case 'stanley-cup-tierlist':
+                    renderStanleyCupTierlistPage();
+                    break;
+                case 'fitness-youtuber-page':
+                    renderFitnessYouTuberPage();
+                    break;
+                case 'tv-series-page':
+                    renderTvSeriesPage();
+                    break;
+                case 'article-7':
+                case 'article-8':
+                case 'article-9':
+                    renderArticlePage(page);
+                    break;
+                case 'about-page': // New case for About page
+                    renderAboutPage();
+                    break;
+                default:
+                    renderHomePage();
             }
-        };
+        }
 
-        // Render the home page after the document loads
+        // Initial page load
         document.addEventListener('DOMContentLoaded', () => {
             navigateTo('home');
         });
