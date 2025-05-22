@@ -96,7 +96,7 @@
             "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
-            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
+            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png", // Nová URL pro Brave logo
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
 
@@ -177,7 +177,7 @@
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
             "Opera Browser": "https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg",
-            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
+            "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png", // Nová URL pro Brave logo
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
 
@@ -216,7 +216,7 @@
                     >
                         <div class="w-[72px] h-[72px] rounded-full bg-white flex items-center justify-center mb-3 border-[3px] border-white overflow-hidden">
                             <img src="${browserLogosFull[browserData.name]}" alt="${browserData.name} logo" class="w-full h-full object-cover"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/72x72/ffffff/000000?text=Logo';" crossorigin="anonymous">
+                                 onerror="this.onerror=null;this.src='https://placehold.co/72x72/ffffff/000000?text=Logo';">
                         </div>
                         <h2 class="text-lg font-bold mb-2">${browserData.name}</h2>
                         <p class="text-4xl font-extrabold mb-3">${browserData.score}</p>
@@ -326,19 +326,19 @@
                                         <div class="flex flex-wrap justify-center items-center gap-2 p-4">
                                             ${post.teaserLogos.map(logoName => `
                                                 <img src="${browserLogosTeaser[logoName]}" alt="${logoName} logo" class="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
-                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';" crossorigin="anonymous">
+                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';">
                                             `).join('')}
                                         </div>
                                     ` : post.nhlTeaserLogos ? `
                                         <div class="flex flex-wrap justify-center items-center gap-2 p-4">
                                             ${post.nhlTeaserLogos.map(logoName => `
                                                 <img src="${nhlTeamLogosTeaser[logoName]}" alt="${logoName} logo" class="w-12 h-12 object-contain rounded-full shadow-md bg-white p-1"
-                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';" crossorigin="anonymous">
+                                                     onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';">
                                             `).join('')}
                                         </div>
                                     ` : `
                                         <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/000000?text=Obrázek+není+dostupný';" crossorigin="anonymous">
+                                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/000000?text=Obrázek+není+dostupný';">
                                     `}
                                 </div>
 
