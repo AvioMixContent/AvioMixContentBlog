@@ -72,15 +72,21 @@
                 ],
                 category: 'Sport',
                 date: '2025-05-20',
-                page: 'nhl-tierlist' // Přidáno pro navigaci na stránku s tierlistem
+                page: 'nhl-tierlist' // Added for navigation to the tierlist page
             },
             {
                 id: 3,
-                title: 'Mobilní revoluce: Co očekávat od smartphonů v roce 2025',
-                excerpt: 'Inovace v mobilních telefonech, které ovlivní náš každodenní život. Od skládacích displejů po vylepšené AI funkce.',
-                image: 'https://placehold.co/600x400/FFFFFF/000000?text=Mobily',
-                category: 'Technologie',
-                date: '2025-05-18'
+                title: 'My NFL Teams Tierlist', // Changed title for the teaser tile
+                excerpt: 'Podívejte se na náš žebříček týmů NFL. Které týmy jsou na vrcholu a které potřebují zlepšení?', // Updated description
+                // Custom image object for NFL teaser
+                image: {
+                    type: 'custom-nfl-teaser',
+                    text: 'My NFL Teams Tierlist',
+                    logo: 'https://i.ibb.co/kVGF1KWF/NFLlogo.png' // Updated NFL logo URL to the new PNG
+                },
+                category: 'Sport', // Changed category
+                date: '2025-05-18',
+                page: 'nfl-tierlist-page' // Page for NFL Tierlist
             },
             {
                 id: 4,
@@ -113,48 +119,48 @@
             "Google Chrome": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg",
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
-            // Používáme novou URL pro Brave logo
+            // Using the new URL for Brave logo
             "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
 
-        // Nový objekt pro loga NHL týmů v teaseru (používáme zástupné obrázky s barvami)
+        // New object for NHL team logos in the teaser (using placeholder images with colors)
         const nhlTeamLogosTeaser = {
-            "Anaheim Ducks": "https://placehold.co/48x48/F47A38/000000?text=ANA", // Oranžová/Černá
-            "Arizona Coyotes": "https://placehold.co/48x48/8C2633/FFFFFF?text=ARI", // Kaštanová/Bílá
-            "Boston Bruins": "https://placehold.co/48x48/FFB81C/000000?text=BOS", // Zlatá/Černá
-            "Buffalo Sabres": "https://placehold.co/48x48/002654/FFB81C?text=BUF", // Modrá/Zlatá
-            "Calgary Flames": "https://placehold.co/48x48/C8102E/FFB81C?text=CGY", // Červená/Zlatá
-            "Carolina Hurricanes": "https://placehold.co/48x48/CC0000/FFFFFF?text=CAR", // Červená/Bílá
-            "Chicago Blackhawks": "https://placehold.co/48x48/E3263A/000000?text=CHI", // Červená/Černá
-            "Colorado Avalanche": "https://placehold.co/48x48/236192/B22234?text=COL", // Modrá/Vínová
-            "Columbus Blue Jackets": "https://placehold.co/48x48/002654/C8102E?text=CBJ", // Modrá/Červená
-            "Dallas Stars": "https://placehold.co/48x48/006341/000000?text=DAL", // Zelená/Černá
-            "Detroit Red Wings": "https://placehold.co/48x48/CE1126/FFFFFF?text=DET", // Červená/Bílá
-            "Edmonton Oilers": "https://placehold.co/48x48/041E42/FF4C00?text=EDM", // Modrá/Oranžová
-            "Florida Panthers": "https://placehold.co/48x48/041E42/C8102E?text=FLA", // Modrá/Červená
-            "Los Angeles Kings": "https://placehold.co/48x48/111111/A2AAAD?text=LAK", // Černá/Šedá
-            "Minnesota Wild": "https://placehold.co/48x48/154734/A6192E?text=MIN", // Zelená/Vínová
-            "Montreal Canadiens": "https://placehold.co/48x48/AA192E/001E62?text=MTL", // Červená/Modrá
-            "Nashville Predators": "https://placehold.co/48x48/FFB81C/041E42?text=NSH", // Zlatá/Modrá
-            "New Jersey Devils": "https://placehold.co/48x48/C8102E/000000?text=NJD", // Červená/Černá
-            "New York Islanders": "https://placehold.co/48x48/00529B/FFC72C?text=NYI", // Modrá/Zlatá
-            "New York Rangers": "https://placehold.co/48x48/0038A8/C8102E?text=NYR", // Modrá/Červená
-            "Ottawa Senators": "https://placehold.co/48x48/C8102E/000000?text=OTT", // Červená/Černá
-            "Philadelphia Flyers": "https://placehold.co/48x48/F74902/000000?text=PHI", // Oranžová/Černá
-            "Pittsburgh Penguins": "https://placehold.co/48x48/000000/FFB81C?text=PIT", // Černá/Zlatá
-            "San Jose Sharks": "https://placehold.co/48x48/006D75/000000?text=SJS", // Tyrkysová/Černá
-            "Seattle Kraken": "https://placehold.co/48x48/001628/68A2B9?text=SEA", // Modrá/Šedá
-            "St. Louis Blues": "https://placehold.co/48x48/002654/FFD700?text=STL", // Modrá/Zlatá
-            "Tampa Bay Lightning": "https://placehold.co/48x48/002654/FFFFFF?text=TBL", // Modrá/Bílá
-            "Toronto Maple Leafs": "https://placehold.co/48x48/00205B/FFFFFF?text=TOR", // Modrá/Bílá
-            "Vancouver Canucks": "https://placehold.co/48x48/00205B/041C2C?text=VAN", // Modrá/Zelená
-            "Vegas Golden Knights": "https://placehold.co/48x48/B4975A/000000?text=VGK", // Zlatá/Černá
-            "Washington Capitals": "https://placehold.co/48x48/C8102E/041E42?text=WSH", // Červená/Modrá
-            "Winnipeg Jets": "https://placehold.co/48x48/041E42/A2AAAD?text=WPG"  // Modrá/Šedá
+            "Anaheim Ducks": "https://placehold.co/48x48/F47A38/000000?text=ANA", // Orange/Black
+            "Arizona Coyotes": "https://placehold.co/48x48/8C2633/FFFFFF?text=ARI", // Maroon/White
+            "Boston Bruins": "https://placehold.co/48x48/FFB81C/000000?text=BOS", // Gold/Black
+            "Buffalo Sabres": "https://placehold.co/48x48/002654/FFB81C?text=BUF", // Blue/Gold
+            "Calgary Flames": "https://placehold.co/48x48/C8102E/FFB81C?text=CGY", // Red/Gold
+            "Carolina Hurricanes": "https://placehold.co/48x48/CC0000/FFFFFF?text=CAR", // Red/White
+            "Chicago Blackhawks": "https://placehold.co/48x48/E3263A/000000?text=CHI", // Red/Black
+            "Colorado Avalanche": "https://placehold.co/48x48/236192/B22234?text=COL", // Blue/Maroon
+            "Columbus Blue Jackets": "https://placehold.co/48x48/002654/C8102E?text=CBJ", // Blue/Red
+            "Dallas Stars": "https://placehold.co/48x48/006341/000000?text=DAL", // Green/Black
+            "Detroit Red Wings": "https://placehold.co/48x48/CE1126/FFFFFF?text=DET", // Red/White
+            "Edmonton Oilers": "https://placehold.co/48x48/041E42/FF4C00?text=EDM", // Blue/Orange
+            "Florida Panthers": "https://placehold.co/48x48/041E42/C8102E?text=FLA", // Blue/Red
+            "Los Angeles Kings": "https://placehold.co/48x48/111111/A2AAAD?text=LAK", // Black/Gray
+            "Minnesota Wild": "https://placehold.co/48x48/154734/A6192E?text=MIN", // Green/Maroon
+            "Montreal Canadiens": "https://placehold.co/48x48/AA192E/001E62?text=MTL", // Red/Blue
+            "Nashville Predators": "https://placehold.co/48x48/FFB81C/041E42?text=NSH", // Gold/Blue
+            "New Jersey Devils": "https://placehold.co/48x48/C8102E/000000?text=NJD", // Red/Black
+            "New York Islanders": "https://placehold.co/48x48/00529B/FFC72C?text=NYI", // Blue/Gold
+            "New York Rangers": "https://placehold.co/48x48/0038A8/C8102E?text=NYR", // Blue/Red
+            "Ottawa Senators": "https://placehold.co/48x48/C8102E/000000?text=OTT", // Red/Black
+            "Philadelphia Flyers": "https://placehold.co/48x48/F74902/000000?text=PHI", // Orange/Black
+            "Pittsburgh Penguins": "https://placehold.co/48x48/000000/FFB81C?text=PIT", // Black/Gold
+            "San Jose Sharks": "https://placehold.co/48x48/006D75/000000?text=SJS", // Teal/Black
+            "Seattle Kraken": "https://placehold.co/48x48/001628/68A2B9?text=SEA", // Blue/Gray
+            "St. Louis Blues": "https://placehold.co/48x48/002654/FFD700?text=STL", // Blue/Gold
+            "Tampa Bay Lightning": "https://placehold.co/48x48/002654/FFFFFF?text=TBL", // Blue/White
+            "Toronto Maple Leafs": "https://placehold.co/48x48/00205B/FFFFFF?text=TOR", // Blue/White
+            "Vancouver Canucks": "https://placehold.co/48x48/00205B/041C2C?text=VAN", // Blue/Green
+            "Vegas Golden Knights": "https://placehold.co/48x48/B4975A/000000?text=VGK", // Gold/Black
+            "Washington Capitals": "https://placehold.co/48x48/C8102E/041E42?text=WSH", // Red/Blue
+            "Winnipeg Jets": "https://placehold.co/48x48/041E42/A2AAAD?text=WPG"  // Blue/Gray
         };
 
-        // Data pro BrowserScoresPage
+        // Data for BrowserScoresPage
         const browserScoresData = {
             "i7 13980HX RTX 4090 laptop 32GB RAM DDR5 4800MHz": {
                 "Google Chrome": { score: 35.1, description: "Optimalizováno pro extrémní výkon na špičkových herních notebocích." },
@@ -195,7 +201,7 @@
             "Microsoft Edge": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
             "Mozilla Firefox": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
             "Opera Browser": "https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg",
-            // Používáme novou URL pro Brave logo
+            // Using the new URL for Brave logo
             "Brave Browser": "https://images.icon-icons.com/2552/PNG/512/brave_browser_logo_icon_153013.png",
             "Apple Safari": "https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg"
         };
@@ -209,12 +215,12 @@
             "Apple Safari": "bg-gray-600"
         };
 
-        let currentPage = 'home'; // Globální proměnná pro sledování aktuální stránky
+        let currentPage = 'home'; // Global variable to track the current page
 
-        // Funkce pro vykreslení stránky s výsledky prohlížečů
+        // Function to render the browser scores page
         function renderBrowserScoresPage() {
             const appRoot = document.getElementById('app-root');
-            let currentConfig = Object.keys(browserScoresData)[0]; // Výchozí konfigurace
+            let currentConfig = Object.keys(browserScoresData)[0]; // Default configuration
 
             const sortedBrowsers = (config) => {
                 const scores = browserScoresData[config];
@@ -244,7 +250,7 @@
                 `).join('');
             };
 
-            // Vykreslení stránky
+            // Render the page
             appRoot.innerHTML = `
                 <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-white font-inter">
                     <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8">
@@ -280,11 +286,11 @@
                 </div>
             `;
 
-            // Funkce pro aktualizaci konfigurace prohlížečů
+            // Function to update browser configuration
             window.updateBrowserConfig = (newConfig) => {
                 currentConfig = newConfig;
                 document.getElementById('browser-tiles-container').innerHTML = generateBrowserTiles(currentConfig);
-                // Aktualizovat styly tlačítek konfigurace
+                // Update button styles for configuration
                 document.querySelectorAll('.config-button').forEach(button => {
                     if (button.textContent.trim() === newConfig) {
                         button.classList.add('bg-blue-500', 'text-white', 'shadow-lg');
@@ -297,7 +303,7 @@
             };
         }
 
-        // Funkce pro vykreslení stránky s NHL Tierlistem
+        // Function to render the NHL Tierlist page
         function renderNhlTierlistPage() {
             const appRoot = document.getElementById('app-root');
             appRoot.innerHTML = `
@@ -323,8 +329,34 @@
             `;
         }
 
+        // Function to render the NFL Tierlist page
+        function renderNflTierlistPage() {
+            const appRoot = document.getElementById('app-root');
+            appRoot.innerHTML = `
+                <div class="min-h-screen flex flex-col items-center py-8 px-4 bg-yellow-100 font-inter">
+                    <div class="max-w-6xl w-full bg-white rounded-xl shadow-lg p-8 text-center">
+                        <button onclick="navigateTo('home')" class="mb-6 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300">
+                            &larr; Zpět na blog
+                        </button>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-8">My NFL Teams Tierlist</h1>
+                        <p class="text-gray-700 mb-6">
+                            Zde je náš tierlist týmů NFL. Kliknutím na obrázek se dostanete na stránku s plnou velikostí.
+                        </p>
+                        <div class="flex justify-center mb-8">
+                            <a href="https://ibb.co/ZpN28TjC" target="_blank" class="block max-w-full h-auto rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                                <img src="https://i.ibb.co/KpmKqyPH/NFLTeams-Tierlist.png" alt="NFL Teams Tierlist" class="w-full h-auto object-contain">
+                            </a>
+                        </div>
+                    </div>
+                    <footer class="w-full max-w-6xl text-center text-gray-800 text-lg font-semibold mt-8 bg-yellow-200 rounded-b-xl">
+                        <p>Obsah poskytuje Avio's Mix Content.</p>
+                    </footer>
+                </div>
+            `;
+        }
 
-        // Funkce pro vykreslení hlavní stránky blogu
+
+        // Function to render the main blog page
         function renderHomePage() {
             const appRoot = document.getElementById('app-root');
             appRoot.innerHTML = `
@@ -385,6 +417,13 @@
                                                      onerror="this.onerror=null;this.src='https://placehold.co/48x48/CCCCCC/000000?text=Logo';">
                                             `).join('')}
                                         </div>
+                                    ` : post.image.type === 'custom-nfl-teaser' ? `
+                                        <div class="relative w-full h-full flex flex-col items-center justify-center p-4">
+                                            <h3 class="text-black text-2xl font-bold text-center mb-2">
+                                                ${post.image.text}
+                                            </h3>
+                                            <img src="${post.image.logo}" alt="NFL Logo" class="w-24 h-auto object-contain">
+                                        </div>
                                     ` : `
                                         <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                                              onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/000000?text=Obrázek+není+dostupný';">
@@ -434,19 +473,21 @@
             `;
         }
 
-        // Funkce pro navigaci mezi stránkami
+        // Function for navigating between pages
         window.navigateTo = (page) => {
             currentPage = page;
             if (currentPage === 'home') {
                 renderHomePage();
             } else if (currentPage === 'browser-scores') {
                 renderBrowserScoresPage();
-            } else if (currentPage === 'nhl-tierlist') { // Nová podmínka pro NHL Tierlist
+            } else if (currentPage === 'nhl-tierlist') { // New condition for NHL Tierlist
                 renderNhlTierlistPage();
+            } else if (currentPage === 'nfl-tierlist-page') { // New condition for NFL Tierlist
+                renderNflTierlistPage();
             }
         };
 
-        // Po načtení stránky vykreslíme domovskou stránku
+        // Render the home page after the document loads
         document.addEventListener('DOMContentLoaded', () => {
             navigateTo('home');
         });
